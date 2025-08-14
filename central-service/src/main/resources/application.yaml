@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: central-service
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: central-service
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.type.mapping: sensorInfo:it.demo.central_service.bean.SensorInfo
+  jackson:
+    mapper:
+      accept-case-insensitive-enums: true
+server:
+  port: 9999
+central:
+  sensors:
+    - type: temperature
+      threshold: 35
+    - type: humidity
+      threshold: 50

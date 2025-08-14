@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: warehouse-service
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.type.mapping: sensorInfo:it.demo.warehouse_service.bean.SensorInfo
+server:
+  port: 8888
+warehouse:
+  id: w1
+  sensors:
+    - type: temperature
+      port: 3344
+    - type: humidity
+      port: 3355
