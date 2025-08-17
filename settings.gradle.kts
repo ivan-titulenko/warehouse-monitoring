@@ -1,2 +1,2 @@
-rootProject.name = "warehouse-alarm"
+rootProject.name = "warehouse-monitoring"
 include("central-service")

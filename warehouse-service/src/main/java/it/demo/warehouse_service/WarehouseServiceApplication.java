@@ -1,6 +1,6 @@
 package it.demo.warehouse_service;
 
-import it.demo.warehouse_service.handler.SensorMessageHandler;
+import it.demo.warehouse_service.handler.SensorProcessor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -20,8 +20,8 @@ public class WarehouseServiceApplication {
 	}
 
     @Bean
-    public Map<String, SensorMessageHandler> sensorHandlers(List<SensorMessageHandler> handlers) {
+    public Map<String, SensorProcessor> sensorHandlers(List<SensorProcessor> handlers) {
         return handlers.stream()
-                .collect(Collectors.toMap(SensorMessageHandler::sensorType, Function.identity()));
+                .collect(Collectors.toMap(SensorProcessor::sensorType, Function.identity()));
     }
 }

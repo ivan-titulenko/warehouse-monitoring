@@ -21,10 +21,11 @@ extra["springCloudVersion"] = "2025.0.0"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
-	implementation("org.springframework.boot:spring-boot-starter-integration")
 	implementation("org.springframework.cloud:spring-cloud-stream-binder-kafka-reactive")
-	implementation("org.springframework.integration:spring-integration-ip")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.projectlombok:lombok:1.18.38")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("org.springframework.cloud:spring-cloud-stream-binder-kafka-reactive-test-binder")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")

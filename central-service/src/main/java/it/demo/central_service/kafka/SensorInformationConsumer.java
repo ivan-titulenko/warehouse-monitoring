@@ -2,6 +2,8 @@ package it.demo.central_service.kafka;
 
 import it.demo.central_service.bean.SensorInfo;
 import jakarta.annotation.PostConstruct;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.kafka.core.reactive.ReactiveKafkaConsumerTemplate;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,8 @@ import java.util.List;
 
 @Service
 public class SensorInformationConsumer {
+
+    Logger log = LoggerFactory.getLogger(SensorInformationConsumer.class);
 
     private final ReactiveKafkaConsumerTemplate<String, SensorInfo> kafkaConsumer;
     private final ClimateMessageHandler climateMessageHandler;
@@ -28,8 +32,7 @@ public class SensorInformationConsumer {
         kafkaConsumer
                 .receiveAutoAck()
                 .doOnNext(climateMessageHandler::handle)
-                .doOnError(e -> System.out.println("ERROR! Consumer error " + e.getMessage()))
-                .doOnComplete(() -> System.out.println("Consumed all messages"))
+                .doOnError(e -> log.error("Kafka consumer error ", e))
                 .subscribe();
     }
 }

@@ -12,18 +12,19 @@ import reactor.kafka.sender.SenderResult;
 @Component
 public class SensorInformationProducer {
 
-    @Value("${warehouse.id}")
-    String warehouseId;
-
+    private final String warehouseId;
+    private final String topic;
     private final ReactiveKafkaProducerTemplate<String, SensorInfo> kafkaProducer;
 
-    public SensorInformationProducer(KafkaProperties properties) {
+    public SensorInformationProducer(KafkaProperties properties, @Value("${warehouse.id}") String warehouseId, @Value("${warehouse.kafka-topic}") String topic) {
         kafkaProducer = new ReactiveKafkaProducerTemplate<>(
                 SenderOptions.create(properties.buildProducerProperties())
         );
+        this.warehouseId = warehouseId;
+        this.topic = topic;
     }
 
     public Mono<SenderResult<Void>> sendMessage(SensorInfo info) {
-        return kafkaProducer.send("warehouse-climate", warehouseId, info);
+        return kafkaProducer.send(topic, warehouseId, info);
     }
 }

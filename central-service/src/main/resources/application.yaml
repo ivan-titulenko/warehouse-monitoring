@@ -16,7 +16,7 @@ server:
   port: 9999
 central:
   sensors:
-    - type: temperature
+    temperature:
       threshold: 35
-    - type: humidity
+    humidity:
       threshold: 50

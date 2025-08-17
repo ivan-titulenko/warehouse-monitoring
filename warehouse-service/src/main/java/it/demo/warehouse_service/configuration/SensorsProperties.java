@@ -1,22 +1,21 @@
 package it.demo.warehouse_service.configuration;
 
-import it.demo.warehouse_service.bean.SensorProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.List;
+import java.util.Map;
 
 @Configuration
 @ConfigurationProperties(prefix = "warehouse")
-public class WarehouseProperties {
+public class SensorsProperties {
 
-    private List<SensorProperty> sensors;
+    private Map<String, SensorProperty> sensors;
 
-    public List<SensorProperty> getSensors() {
+    public Map<String, SensorProperty> getSensors() {
         return sensors;
     }
 
-    public void setSensors(List<SensorProperty> sensors) {
+    public void setSensors(Map<String, SensorProperty> sensors) {
         this.sensors = sensors;
     }
 }
